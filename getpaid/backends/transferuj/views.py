@@ -32,7 +32,7 @@ class OnlineView(View):
             logger.warning('Got malformed POST request: %s' % str(request.POST))
             return HttpResponse('MALFORMED')
 
-        status = PaymentProcessor.online(request.META['REMOTE_ADDR'], id, tr_id, tr_date, tr_crc, tr_amount, tr_paid, tr_desc, tr_status, tr_error, tr_email, md5sum)
+        status = PaymentProcessor.online(request.META['HTTP_X_REAL_IP'], id, tr_id, tr_date, tr_crc, tr_amount, tr_paid, tr_desc, tr_status, tr_error, tr_email, md5sum)
         return HttpResponse(status)
 
 
